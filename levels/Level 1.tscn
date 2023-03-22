@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://levels/Tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://GFX/HUD/bannerHanging.png" type="Texture" id=3]
+[ext_resource path="res://SFX/chiptune-grooving-142242.mp3" type="AudioStream" id=4]
+
+[node name="Level 1" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 19436, -999 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+collision_layer = 2
+format = 1
+tile_data = PoolIntArray( -1375944, 6, 0, -720595, 6, 0, -327430, 6, 0, -196576, 0, 0, -130758, 6, 0, 65669, 6, 0, 196633, 0, 0, 196690, 7, 0, 196833, 6, 0, 196839, 6, 0, 196845, 6, 0, 262361, 4, 0, 393342, 6, 0, 393368, 7, 0, 393500, 6, 0, 524288, 0, 0, 524294, 0, 0, 524300, 0, 0, 524306, 0, 0, 524329, 0, 0, 524335, 0, 0, 524341, 0, 0, 524347, 0, 0, 524361, 0, 0, 524594, 6, 0, 720984, 7, 0, 720987, 7, 0, 852075, 6, 0, 852081, 6, 0, 852087, 6, 0, 852114, 7, 0, 852125, 6, 0, 852131, 6, 0, 852138, 4, 0, 852144, 4, 0, 852179, 4, 0, 917780, 6, 0, 983141, 6, 0, 983300, 6, 0, 1048642, 0, 0, 1114207, 6, 0, 1114409, 7, 0, 1245368, 4, 0, 1376467, 4, 0, 1638593, 4, 0, 2031818, 4, 0 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -5.0
+autoplay = true
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 20160, -1934 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2( 5.02315, -0.317722 )
+scale = Vector2( 1.02315, 1.00717 )
+polygon = PoolVector2Array( -136, -34, -136, 26, 134, 25, 134, -35 )
+
+[node name="Sprite" type="Sprite" parent="Area2D"]
+position = Vector2( 5.02344, -0.317749 )
+scale = Vector2( 1.02315, 1.00717 )
+texture = ExtResource( 3 )
+
+[connection signal="area_entered" from="Area2D" to="Player" method="_on_Area2D_area_entered"]
+[connection signal="body_entered" from="Area2D" to="Player" method="_on_Area2D_body_entered"]
